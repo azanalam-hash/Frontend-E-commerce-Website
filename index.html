@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Frontend E-commerce
+Website</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+    <header class="navbar">
+
+  <div class="nav-container">
+
+    <!-- LOGO -->
+    <div class="logo">Payne.</div>
+
+    <!-- MENU -->
+    <nav class="nav-menu" id="navMenu">
+      <a href="#">Home</a>
+      <a href="pages/product.html">Shop</a>
+      <a href="#">Pages</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <!-- RIGHT ICONS -->
+    <div class="nav-icons">
+
+      <!-- SEARCH -->
+      <div class="search-box">
+        <input type="text" placeholder="Search products..." id="searchInput">
+      </div>
+
+      <!-- USER -->
+      <span class="icon">👤</span>
+
+      <!-- WISHLIST -->
+      <span class="icon">❤</span>
+
+      <!-- CART -->
+      <div class="cart-icon">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+
+      <!-- HAMBURGER -->
+      <div class="hamburger" id="hamburger">☰</div>
+
+    </div>
+
+  </div>
+</header>
+  
+  <!-- HERO SECTION -->
+<section class="hero">
+
+  <div class="slider">
+
+    <div class="slide active">
+      <div class="slide-content">
+        <h4>AMAZING PRODUCT!</h4>
+        <h1>URBAN BACKPACK</h1>
+        <p>Premium quality backpack designed for travel and everyday use.</p>
+        <button class="btn">Shop Now</button>
+      </div>
+      <img src="images/products/bag1.png" alt="Backpack">
+    </div>
+
+    <div class="slide">
+      <div class="slide-content">
+        <h4>NEW COLLECTION</h4>
+        <h1>TRAVEL SERIES</h1>
+        <p>Lightweight, durable and stylish backpacks for explorers.</p>
+        <button class="btn">Explore</button>
+      </div>
+      <img src="images/products/bag2.png" alt="Backpack">
+    </div>
+
+  </div>
+<!-- Controls -->
+  <button class="prev">❮</button>
+  <button class="next">❯</button>
+
+  
+
+  <!-- Dots -->
+  <div class="dots"></div>
+  
+
+</section>
+<!-- FEATURED PRODUCTS -->
+<section class="featured-products">
+
+  <h2>Featured Backpacks</h2>
+
+  <!-- 
+    This container will be filled dynamically using JavaScript.
+    We do NOT hardcode products here.
+  -->
+  <div class="products-grid" id="featuredProducts"></div>
+
+</section>
+<!-- CATEGORY SECTION -->
+<section class="categories">
+
+  <h2>Shop by Category</h2>
+
+  <!-- This will be filled dynamically -->
+  <div class="category-grid" id="categoryContainer"></div>
+
+</section>
+
+
+
+
+<footer class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>About Us</h3>
+      <p>Premium backpack store offering travel, office, and lifestyle bags.</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Cart</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-section">
+      <h3>Contact</h3>
+      <p>Email: support@backpackstore.com</p>
+      <p>Phone: +1 234 567 890</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <p>Facebook | Instagram | Twitter</p>
+    </div>
+
+  </div>
+
+  <p class="copyright">© 2026 Backpack Store. All rights reserved.</p>
+
+</footer>
+<!-- =====================================
+CART DRAWER (SLIDE FROM LEFT)
+===================================== -->
+
+<!-- Overlay (dark background when cart opens) -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Cart Drawer -->
+<div class="cart-drawer" id="cartDrawer">
+
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="closeCart">✖</button>
+  </div>
+
+  <!-- Cart Items Container -->
+  <div class="cart-items" id="cartItems">
+    <!-- Items will load dynamically here -->
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <p>Subtotal: $<span id="cartSubtotal">0</span></p>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+
+
+  <script src="js/main.js"></script>
+
+
+
+</body>
+</html>
