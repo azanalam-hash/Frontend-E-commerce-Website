@@ -1,0 +1,48 @@
+/* 📱 MOBILE Nav Bar */
+
+@media (max-width: 768px) {
+
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    left: -100%;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    transition: 0.3s;
+    padding: 20px 0;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+} 
+
+
+/* MOBILE HEro section */
+
+@media (max-width: 768px) {
+  .slide {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .slide img {
+    width: 250px;
+    margin-top: 20px;
+  }
+
+  .slide-content h1 {
+    font-size: 32px;
+  }
+}

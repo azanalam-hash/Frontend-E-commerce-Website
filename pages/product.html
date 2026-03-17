@@ -1,0 +1,128 @@
+<!-- ============================= -->
+<!-- PRODUCT LISTING PAGE -->
+<!-- ============================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Page Title -->
+  <title>Shop Backpacks</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<!-- ============================= -->
+<!-- PAGE HEADER -->
+<!-- ============================= -->
+
+<h1 class="page-title">Shop Backpacks</h1>
+
+
+<!-- ============================= -->
+<!-- MAIN LAYOUT -->
+<!-- Sidebar + Products -->
+<!-- ============================= -->
+
+<div class="shop-container">
+
+  <!-- ============================= -->
+  <!-- SIDEBAR FILTERS -->
+  <!-- ============================= -->
+
+  <aside class="filters">
+
+    <h3>Categories</h3>
+
+    <!-- Category filters -->
+    <label>
+      <input type="checkbox" value="Travel" class="category-filter">
+      Travel
+    </label>
+
+    <label>
+      <input type="checkbox" value="Office" class="category-filter">
+      Office
+    </label>
+
+    <label>
+      <input type="checkbox" value="School" class="category-filter">
+      School
+    </label>
+
+    <label>
+      <input type="checkbox" value="Hiking" class="category-filter">
+      Hiking
+    </label>
+
+
+    <!-- ============================= -->
+    <!-- PRICE FILTER -->
+    <!-- ============================= -->
+
+    <h3>Price Range</h3>
+
+    <!-- minimum price -->
+    <input type="number" id="minPrice" placeholder="Min Price">
+
+    <!-- maximum price -->
+    <input type="number" id="maxPrice" placeholder="Max Price">
+
+
+    <!-- ============================= -->
+    <!-- SORTING -->
+    <!-- ============================= -->
+
+    <h3>Sort By</h3>
+
+    <select id="sortProducts">
+
+      <option value="">Default</option>
+
+      <option value="low-high">Price Low to High</option>
+
+      <option value="high-low">Price High to Low</option>
+
+      <option value="name">Name A-Z</option>
+
+      <option value="rating">Top Rating</option>
+
+    </select>
+
+  </aside>
+
+
+
+  <!-- ============================= -->
+  <!-- PRODUCT GRID -->
+  <!-- ============================= -->
+
+  <section class="products-area">
+
+    <!-- Search within products -->
+    <input type="text" id="productSearch" placeholder="Search products...">
+
+    <!-- Grid container -->
+    <div class="products-grid" id="productsContainer"></div>
+
+    <!-- Load More button -->
+    <button id="loadMoreBtn">Load More</button>
+
+  </section>
+
+</div>
+
+
+
+<!-- Load JS files -->
+<script src="../js/data.js"></script>
+<script src="../js/products.js"></script>
+
+</body>
+
+</html>
