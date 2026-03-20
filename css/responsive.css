@@ -1,33 +1,62 @@
 /* 📱 MOBILE Nav Bar */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-  .nav-menu {
-    position: absolute;
-    top: 70px;
-    left: -100%;
-    flex-direction: column;
-    width: 100%;
-    background: #fff;
-    text-align: center;
-    transition: 0.3s;
-    padding: 20px 0;
-  }
+/* show hamburger */
+.hamburger{
+display:block;
+}
 
-  .nav-menu.active {
-    left: 0;
-  }
+/* hide menu by default */
+.nav-menu{
 
-  .search-box {
-    display: none;
-  }
+position:absolute;
+top:70px;
+left:0;
 
-  .hamburger {
-    display: block;
-  }
+width:100%;
+background:white;
 
-} 
+flex-direction:column;
+align-items:center;
 
+gap:20px;
+padding:20px 0;
+
+/* hidden initially */
+transform:translateY(-200%);
+transition:0.3s;
+
+}
+
+/* when active (clicked) */
+.nav-menu.active{
+transform:translateY(0);
+}
+
+/* dropdown fix for mobile */
+.dropdown-menu{
+
+position:static;
+opacity:1;
+visibility:visible;
+transform:none;
+
+display:none; /* hidden until clicked */
+
+}
+
+/* show dropdown when active */
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+/* make icons smaller spacing */
+.nav-icons{
+gap:12px;
+}
+
+}
 
 /* MOBILE HEro section */
 

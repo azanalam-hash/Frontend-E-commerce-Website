@@ -1,9 +1,34 @@
-// Responsive hamburger
+/* =========================================
+MOBILE NAVBAR TOGGLE
+========================================= */
+
+// get hamburger button
 const hamburger = document.getElementById("hamburger");
+
+// get menu
 const navMenu = document.getElementById("navMenu");
 
+// toggle menu on click
 hamburger.addEventListener("click", () => {
+
+  // add/remove active class
   navMenu.classList.toggle("active");
+
+});
+
+
+/* =========================================
+MOBILE DROPDOWN TOGGLE
+========================================= */
+
+// select dropdown parent
+const dropdown = document.querySelector(".dropdown");
+
+// toggle dropdown on click (mobile)
+dropdown.addEventListener("click", () => {
+
+  dropdown.classList.toggle("active");
+
 });
 
 
