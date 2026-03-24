@@ -202,39 +202,191 @@ loadCategories();
 
 
 
-/*
-========================================
-CART BADGE UPDATE FUNCTION
-========================================
 
-Purpose:
-- Get cart from localStorage
-- Count total quantity
-- Update badge number
+/* =========================================
+GLOBAL ELEMENTS (we will use these everywhere)
+========================================= */
 
-This runs on every page load
-*/
+// cart icon in navbar
+const cartIcon = document.querySelector(".cart-icon");
 
-/* ========================================
-UPDATE CART BADGE COUNT
-======================================== */
+// cart drawer panel
+const cartDrawer = document.getElementById("cartDrawer");
+
+// overlay behind cart
+const cartOverlay = document.getElementById("cartOverlay");
+
+// close button inside cart
+const closeCart = document.getElementById("closeCart");
+
+
+/* =========================================
+OPEN CART DRAWER
+========================================= */
+
+cartIcon.addEventListener("click", () => {
+
+  // show drawer
+  cartDrawer.classList.add("active");
+
+  // show dark overlay
+  cartOverlay.classList.add("active");
+
+  // load latest cart data
+  loadCartItems();
+
+});
+
+
+/* =========================================
+CLOSE CART DRAWER
+========================================= */
+
+function closeCartDrawer(){
+
+  cartDrawer.classList.remove("active");
+  cartOverlay.classList.remove("active");
+
+}
+
+// close button click
+closeCart.addEventListener("click", closeCartDrawer);
+
+// clicking outside (overlay)
+cartOverlay.addEventListener("click", closeCartDrawer);
+
+
+/* =========================================
+ADD TO CART SYSTEM
+========================================= */
+
+document.addEventListener("click", function(e){
+
+  // check if Add to Cart button clicked
+  if(e.target.classList.contains("add-to-cart")){
+
+    // get product ID
+    const productId = parseInt(e.target.dataset.id);
+
+    // get cart from storage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // check if product already exists
+    const existingItem = cart.find(item => item.id === productId);
+
+    if(existingItem){
+
+      // increase quantity
+      existingItem.quantity += 1;
+
+    } else {
+
+      // add new product
+      cart.push({
+        id: productId,
+        quantity: 1
+      });
+
+    }
+
+    // save cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // update UI
+    updateCartBadge();
+    loadCartItems();
+
+    // OPTIONAL: open cart automatically
+    cartDrawer.classList.add("active");
+    cartOverlay.classList.add("active");
+
+  }
+
+});
+
+/* =========================================
+UPDATE CART COUNT (NAVBAR)
+========================================= */
 
 function updateCartBadge(){
 
-  // get cart from localStorage
+  // get cart
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // calculate total quantity
-  const total = cart.reduce((sum,item)=>{
+  const total = cart.reduce((sum, item) => {
     return sum + item.quantity;
-  },0);
+  }, 0);
 
-  // update badge UI
+  // update UI
   document.getElementById("cartCount").textContent = total;
+
 }
 
-// Run when page loads
-updateCartBadge();
+/* =========================================
+UPDATE CART COUNT (NAVBAR)
+========================================= */
+
+function updateCartBadge(){
+
+  // get cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // calculate total quantity
+  const total = cart.reduce((sum, item) => {
+    return sum + item.quantity;
+  }, 0);
+
+  // update UI
+  document.getElementById("cartCount").textContent = total;
+
+}
+
+/* =========================================
+LOAD CART ITEMS INTO DRAWER
+========================================= */
+
+function loadCartItems(){
+
+  const container = document.getElementById("cartItems");
+  const subtotalElement = document.getElementById("cartSubtotal");
+
+  // get cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // clear old content
+  container.innerHTML = "";
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+
+    // get product full data from data.js
+    const product = products.find(p => p.id === item.id);
+
+    if(!product) return;
+
+    // calculate subtotal
+    subtotal += product.price * item.quantity;
+
+    // render item
+    container.innerHTML += `
+      <div class="cart-item">
+        <img src="${product.image}">
+        <div>
+          <h4>${product.name}</h4>
+          <p>$${product.price} x ${item.quantity}</p>
+        </div>
+      </div>
+    `;
+
+  });
+
+  // update subtotal
+  subtotalElement.textContent = subtotal.toFixed(2);
+
+}
+
 
 
 
@@ -282,135 +434,3 @@ searchInput.addEventListener("input", function () {
   });
 
 });
-
-
-
-/*
-========================================
-CART DRAWER OPEN & CLOSE
-========================================
-*/
-
-const cartIcon = document.querySelector(".cart-icon");
-const cartDrawer = document.getElementById("cartDrawer");
-const cartOverlay = document.getElementById("cartOverlay");
-const closeCart = document.getElementById("closeCart");
-
-// Open cart when cart icon clicked
-cartIcon.addEventListener("click", () => {
-  cartDrawer.classList.add("active");
-  cartOverlay.classList.add("active");
-  loadCartItems(); // Load items every time it opens
-});
-
-// Close cart
-function closeCartDrawer() {
-  cartDrawer.classList.remove("active");
-  cartOverlay.classList.remove("active");
-}
-
-closeCart.addEventListener("click", closeCartDrawer);
-cartOverlay.addEventListener("click", closeCartDrawer);
-
-
-
-/* ========================================
-ADD TO CART FUNCTIONALITY (CORE LOGIC)
-======================================== */
-
-document.addEventListener("click", function(e){
-
-  // check if clicked element is "Add to Cart" button
-  if(e.target.classList.contains("add-to-cart")){
-
-    // get product id from button data attribute
-    const productId = parseInt(e.target.dataset.id);
-
-    // get existing cart from localStorage
-    // if no cart exists, use empty array
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    /*
-    cart structure example:
-    [
-      { id: 1, quantity: 2 },
-      { id: 3, quantity: 1 }
-    ]
-    */
-
-    // check if product already exists in cart
-    const existingItem = cart.find(item => item.id === productId);
-
-    if(existingItem){
-
-      // if product already exists → increase quantity
-      existingItem.quantity += 1;
-
-    } else {
-
-      // if product not in cart → add new item
-      cart.push({
-        id: productId,
-        quantity: 1
-      });
-
-    }
-
-    // save updated cart back to localStorage
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // update cart badge count
-    updateCartBadge();
-
-    // reload cart drawer items
-    loadCartItems();
-
-    // optional: show success message
-    showToast("Item added to cart ✅");
-
-  }
-
-});
-
-
-/* ========================================
-LOAD CART ITEMS INTO DRAWER
-======================================== */
-
-function loadCartItems(){
-
-  const container = document.getElementById("cartItems");
-  const subtotalElement = document.getElementById("cartSubtotal");
-
-  // get cart
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  container.innerHTML = "";
-
-  let subtotal = 0;
-
-  cart.forEach(item=>{
-
-    // find full product data using id
-    const product = products.find(p => p.id === item.id);
-
-    if(!product) return;
-
-    // calculate subtotal
-    subtotal += product.price * item.quantity;
-
-    container.innerHTML += `
-      <div class="cart-item">
-        <img src="${product.image}">
-        <div>
-          <h4>${product.name}</h4>
-          <p>$${product.price} x ${item.quantity}</p>
-        </div>
-      </div>
-    `;
-  });
-
-  subtotalElement.textContent = subtotal.toFixed(2);
-}
-
-

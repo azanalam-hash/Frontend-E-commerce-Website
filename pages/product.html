@@ -12,10 +12,70 @@
 
   <!-- Main CSS -->
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 
 <body>
+  <header class="header">
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div> Select Language | USD </div>
+
+    <div class="social-icons">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-linkedin"></i>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+<div class="navbar">
+
+  <!-- Logo -->
+  <div class="logo">Payne.</div>
+
+  <!-- Hamburger (only visible on mobile) -->
+  <div class="hamburger" id="hamburger">
+    ☰
+  </div>
+
+  <!-- Menu -->
+  <ul class="nav-menu" id="navMenu">
+
+    <li><a href="#">Home</a></li>
+    <li><a href="pages/product.html">Shop</a></li>
+
+    <li class="dropdown">
+      <a href="#">Pages</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">About</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Checkout</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contact Us</a></li>
+
+  </ul>
+
+  <!-- Icons -->
+  <div class="nav-icons">
+    <i class="fa fa-search"></i>
+    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
+
+    <div class="cart-icon">
+      <i class="fa fa-shopping-bag"></i>
+      <span id="cartCount">0</span>
+    </div>
+  </div>
+
+</div>
+
+</header>
 
 <!-- ============================= -->
 <!-- PAGE HEADER -->
@@ -115,6 +175,38 @@
 
   </section>
 
+  <!-- =====================================
+CART DRAWER (SLIDE FROM LEFT)
+===================================== -->
+
+<!-- Overlay (dark background when cart opens) -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Cart Drawer -->
+<div class="cart-drawer" id="cartDrawer">
+
+  <!-- Cart Header -->
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="closeCart">✖</button>
+  </div>
+
+  <!-- Cart Items Container -->
+  <div class="cart-items" id="cartItems">
+    <!-- Items will load dynamically here -->
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer">
+    <p>Subtotal: $<span id="cartSubtotal">0</span></p>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+
+</div>
+<!-- Toast Message -->
+<div id="toast" class="toast"></div>
+
+
 </div>
 
 
@@ -122,6 +214,7 @@
 <!-- Load JS files -->
 <script src="../js/data.js"></script>
 <script src="../js/products.js"></script>
+
 
 </body>
 

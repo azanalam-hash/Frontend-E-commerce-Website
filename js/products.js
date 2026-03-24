@@ -170,3 +170,188 @@ renderProducts();
 
 /* show products when page loads */
 renderProducts();
+
+
+/* =========================================
+GLOBAL ELEMENTS (we will use these everywhere)
+========================================= */
+
+// cart icon in navbar
+const cartIcon = document.querySelector(".cart-icon");
+
+// cart drawer panel
+const cartDrawer = document.getElementById("cartDrawer");
+
+// overlay behind cart
+const cartOverlay = document.getElementById("cartOverlay");
+
+// close button inside cart
+const closeCart = document.getElementById("closeCart");
+
+
+/* =========================================
+OPEN CART DRAWER
+========================================= */
+
+cartIcon.addEventListener("click", () => {
+
+  // show drawer
+  cartDrawer.classList.add("active");
+
+  // show dark overlay
+  cartOverlay.classList.add("active");
+
+  // load latest cart data
+  loadCartItems();
+
+});
+
+
+/* =========================================
+CLOSE CART DRAWER
+========================================= */
+
+function closeCartDrawer(){
+
+  cartDrawer.classList.remove("active");
+  cartOverlay.classList.remove("active");
+
+}
+
+// close button click
+closeCart.addEventListener("click", closeCartDrawer);
+
+// clicking outside (overlay)
+cartOverlay.addEventListener("click", closeCartDrawer);
+
+
+/* =========================================
+ADD TO CART SYSTEM
+========================================= */
+
+document.addEventListener("click", function(e){
+
+  // check if Add to Cart button clicked
+  if(e.target.classList.contains("add-to-cart")){
+
+    // get product ID
+    const productId = parseInt(e.target.dataset.id);
+
+    // get cart from storage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // check if product already exists
+    const existingItem = cart.find(item => item.id === productId);
+
+    if(existingItem){
+
+      // increase quantity
+      existingItem.quantity += 1;
+
+    } else {
+
+      // add new product
+      cart.push({
+        id: productId,
+        quantity: 1
+      });
+
+    }
+
+    // save cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // update UI
+    updateCartBadge();
+    loadCartItems();
+
+    // OPTIONAL: open cart automatically
+    cartDrawer.classList.add("active");
+    cartOverlay.classList.add("active");
+
+  }
+
+});
+
+/* =========================================
+UPDATE CART COUNT (NAVBAR)
+========================================= */
+
+function updateCartBadge(){
+
+  // get cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // calculate total quantity
+  const total = cart.reduce((sum, item) => {
+    return sum + item.quantity;
+  }, 0);
+
+  // update UI
+  document.getElementById("cartCount").textContent = total;
+
+}
+
+/* =========================================
+UPDATE CART COUNT (NAVBAR)
+========================================= */
+
+function updateCartBadge(){
+
+  // get cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // calculate total quantity
+  const total = cart.reduce((sum, item) => {
+    return sum + item.quantity;
+  }, 0);
+
+  // update UI
+  document.getElementById("cartCount").textContent = total;
+
+}
+
+/* =========================================
+LOAD CART ITEMS INTO DRAWER
+========================================= */
+
+function loadCartItems(){
+
+  const container = document.getElementById("cartItems");
+  const subtotalElement = document.getElementById("cartSubtotal");
+
+  // get cart
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // clear old content
+  container.innerHTML = "";
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+
+    // get product full data from data.js
+    const product = products.find(p => p.id === item.id);
+
+    if(!product) return;
+
+    // calculate subtotal
+    subtotal += product.price * item.quantity;
+
+    // render item
+    container.innerHTML += `
+      <div class="cart-item">
+        <img src="${product.image}">
+        <div>
+          <h4>${product.name}</h4>
+          <p>$${product.price} x ${item.quantity}</p>
+        </div>
+      </div>
+    `;
+
+  });
+
+  // update subtotal
+  subtotalElement.textContent = subtotal.toFixed(2);
+
+}

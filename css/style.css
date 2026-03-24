@@ -35,6 +35,7 @@ font-weight:bold;
 display:flex;
 list-style:none;
 gap:30px;
+z-index: 1001
 }
 
 /* Menu links */
@@ -157,10 +158,74 @@ visibility:visible;
 transform:translateY(0);
 }
 
+
+
 .hamburger{
 display:none; /* hidden on desktop */
 font-size:24px;
 cursor:pointer;
+}
+
+/* ===========================
+MOBILE VIEW
+=========================== */
+
+@media (max-width:768px){
+
+/* show hamburger */
+.hamburger{
+display:block;
+}
+
+/* hide menu by default */
+.nav-menu{
+
+position:absolute;
+top:70px;
+left:0;
+
+width:100%;
+background:white;
+
+flex-direction:column;
+align-items:center;
+
+gap:20px;
+padding:20px 0;
+
+/* hidden initially */
+transform:translateY(-200%);
+transition:0.3s;
+
+}
+
+/* when active (clicked) */
+.nav-menu.active{
+transform:translateY(0);
+}
+
+/* dropdown fix for mobile */
+.dropdown-menu{
+
+position:static;
+opacity:1;
+visibility:visible;
+transform:none;
+
+display:none; /* hidden until clicked */
+
+}
+
+/* show dropdown when active */
+.dropdown.active .dropdown-menu{
+display:block;
+}
+
+/* make icons smaller spacing */
+.nav-icons{
+gap:12px;
+}
+
 }
 
 
@@ -657,4 +722,202 @@ transition:0.3s;
 .toast.show{
 opacity:1;
 transform:translateY(0);
+}
+
+/* ============================= */
+/* MAIN LAYOUT */
+/* ============================= */
+
+.pd-container{
+display:flex;
+gap:40px;
+padding:40px;
+flex-wrap:wrap;
+}
+
+/* ============================= */
+/* LEFT SIDE */
+/* ============================= */
+
+.pd-images{
+display:flex;
+gap:15px;
+}
+
+/* thumbnails */
+.pd-thumbs{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.pd-thumbs img{
+width:70px;
+height:70px;
+object-fit:cover;
+cursor:pointer;
+border:2px solid transparent;
+}
+
+.pd-thumbs img:hover{
+border-color:black;
+}
+
+/* main image */
+.pd-main img{
+width:350px;
+border:1px solid #eee;
+}
+
+
+/* ============================= */
+/* RIGHT SIDE */
+/* ============================= */
+
+.pd-info{
+max-width:400px;
+}
+
+.pd-rating{
+color:orange;
+margin:10px 0;
+}
+
+.pd-price{
+font-size:22px;
+margin:10px 0;
+}
+
+.old-price{
+text-decoration:line-through;
+color:#999;
+margin-left:10px;
+}
+
+.pd-desc{
+color:#555;
+line-height:1.6;
+}
+
+
+/* ============================= */
+/* COUNTDOWN */
+/* ============================= */
+
+.pd-countdown{
+display:flex;
+gap:10px;
+margin:20px 0;
+}
+
+.pd-countdown div{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+
+/* ============================= */
+/* COLORS */
+/* ============================= */
+
+.pd-colors{
+display:flex;
+align-items:center;
+gap:10px;
+margin:15px 0;
+}
+
+.color{
+width:20px;
+height:20px;
+cursor:pointer;
+border:1px solid #000;
+}
+
+.black{background:black;}
+.green{background:green;}
+.yellow{background:yellow;}
+.blue{background:blue;}
+.red{background:red;}
+
+
+/* ============================= */
+/* QUANTITY */
+/* ============================= */
+
+.pd-quantity{
+display:flex;
+gap:10px;
+margin:20px 0;
+}
+
+.pd-quantity button{
+width:30px;
+height:30px;
+border:none;
+background:black;
+color:white;
+cursor:pointer;
+}
+
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+.btn-dark{
+background:black;
+color:white;
+padding:10px;
+width:150px;
+border:none;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+.btn-light{
+background:#eee;
+padding:10px;
+width:150px;
+border:none;
+cursor:pointer;
+}
+
+
+/* ============================= */
+/* TABS */
+/* ============================= */
+
+.pd-tabs{
+padding:40px;
+}
+
+.tab{
+padding:10px 15px;
+border:1px solid #ddd;
+cursor:pointer;
+}
+
+.tab.active{
+background:black;
+color:white;
+}
+
+.tab-content{
+display:none;
+margin-top:20px;
+}
+
+.tab-content.active{
+display:block;
+}
+
+
+/* ============================= */
+/* RELATED */
+/* ============================= */
+
+.related-title{
+margin-left:40px;
 }

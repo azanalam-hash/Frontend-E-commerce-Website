@@ -37,6 +37,18 @@ const products = [
     inStock: true,
     sizes: ["Standard"],
     colors: ["Black", "Red"]
+    // variants: [
+    //   {
+    //     color: "Black",
+    //     image: "https://payne-demo.myshopify.com/cdn/shop/products/10_daed5f76-755e-4d9d-ac19-5afea83e4fdb_large.jpg?v=1606710616",
+    //     price: 59.99
+    //   },
+    //   {
+    //     color: "Red",
+    //     image: "images/products/bag1.png",
+    //     price: 64.99
+    //   }
+    // ]
   },
 
   {
