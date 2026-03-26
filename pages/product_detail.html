@@ -1,143 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header class="header">
+  <!-- ========================= -->
+<!-- PRODUCT DETAIL WRAPPER -->
+<!-- ========================= -->
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div> Select Language | USD </div>
+<div class="product-detail-container">
 
-    <div class="social-icons">
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-twitter"></i>
-      <i class="fa fa-linkedin"></i>
-    </div>
-  </div>
-
-  <!-- Main Navbar -->
-<div class="navbar">
-
-  <!-- Logo -->
-  <div class="logo">Payne.</div>
-
-  <!-- Hamburger (only visible on mobile) -->
-  <div class="hamburger" id="hamburger">
-    ☰
-  </div>
-
-  <!-- Menu -->
-  <ul class="nav-menu" id="navMenu">
-
-    <li><a href="#">Home</a></li>
-    <li><a href="pages/product.html">Shop</a></li>
-
-    <li class="dropdown">
-      <a href="#">Pages</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">About</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Checkout</a></li>
-      </ul>
-    </li>
-
-    <li><a href="#">Blog</a></li>
-    <li><a href="#">Contact Us</a></li>
-
-  </ul>
-
-  <!-- Icons -->
-  <div class="nav-icons">
-    <i class="fa fa-search"></i>
-    <i class="fa fa-user"></i>
-    <i class="fa fa-heart"></i>
-
-    <div class="cart-icon">
-      <i class="fa fa-shopping-bag"></i>
-      <span id="cartCount">0</span>
-    </div>
-  </div>
-
-</div>
-
-<div class="pd-container">
-
-  <!-- LEFT SIDE (IMAGES) -->
-  <div class="pd-images">
+  <!-- LEFT SIDE -->
+  <div class="product-left">
 
     <!-- Thumbnails -->
-    <div class="pd-thumbs" id="thumbnails"></div>
+    <div class="thumbs" id="thumbnails"></div>
 
     <!-- Main Image -->
-    <div class="pd-main">
+    <div class="main-image">
       <img id="mainImage" src="">
     </div>
 
   </div>
 
 
-  <!-- RIGHT SIDE (INFO) -->
-  <div class="pd-info">
+  <!-- RIGHT SIDE -->
+  <div class="product-right">
 
-    <h2 id="productTitle">Backpack</h2>
+    <h2 id="productTitle"></h2>
 
-    <p class="pd-rating" id="productRating">★★★★★ (5.0)</p>
+    <p class="rating" id="productRating"></p>
 
-    <p class="pd-price">
-      $<span id="productPrice"></span>
-      <span class="old-price">$100</span>
+    <p class="price">
+      <span id="productPrice"></span>
     </p>
 
-    <p class="pd-desc" id="productDesc"></p>
+    <p class="desc" id="productDesc"></p>
 
 
-    <!-- COUNTDOWN (STATIC UI) -->
-    <div class="pd-countdown">
-      <div>00<br>Days</div>
-      <div>00<br>Hour</div>
-      <div>00<br>Min</div>
-      <div>00<br>Sec</div>
-    </div>
-
-
-    <!-- COLORS -->
-    <div class="pd-colors">
-      <span>Color:</span>
-      <div class="color black"></div>
-      <div class="color green"></div>
-      <div class="color yellow"></div>
-      <div class="color blue"></div>
-      <div class="color red"></div>
-    </div>
-
-
-    <!-- QUANTITY -->
-    <div class="pd-quantity">
-
+    <!-- Quantity -->
+    <div class="qty-box">
       <button id="decrease">-</button>
       <span id="qty">1</span>
       <button id="increase">+</button>
-
     </div>
 
 
-    <!-- BUTTONS -->
-    <button id="addToCart" class="btn-dark">Add to Cart</button>
-    <button class="btn-light">Buy Now</button>
+    <!-- Colors -->
+    <div class="colors" id="variantContainer"></div>
 
 
-    <!-- META INFO -->
-    <div class="pd-meta">
-      <p>Category: Bags</p>
-      <p>Tags: Travel, Fashion</p>
+    <!-- Buttons -->
+    <div class="buttons">
+
+      <button id="addToCart">Add to Cart</button>
+
+      <button id="buyNow">Buy Now</button>
+
     </div>
 
   </div>
@@ -145,23 +67,15 @@
 </div>
 
 
-<!-- TABS -->
-<div class="pd-tabs">
+<!-- ========================= -->
+<!-- RELATED PRODUCTS -->
+<!-- ========================= -->
 
-  <button class="tab active">Description</button>
-  <button class="tab">Reviews</button>
+<h3 class="section-title">Custom Collection</h3>
 
-  <div class="tab-content active">
-    Lorem ipsum product description here...
-  </div>
-
-</div>
-
-
-<!-- RELATED -->
-<h2 class="related-title">Custom Collection</h2>
 <div class="products-grid" id="relatedProducts"></div>
 
+<script src="../js/data.js"></script>
 <script src="../js/product_detail.js"></script>
 </body>
 </html>
